@@ -30,7 +30,11 @@ export default function EmployeesLanding() {
         animate={{ opacity: introDone ? 1 : 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
         dir="rtl"
-        style={{ overflowX: "hidden", maxWidth: "100vw" }}
+        style={{
+          overflowX: "hidden",
+          maxWidth: "100vw",
+          visibility: introDone ? "visible" : "hidden",
+        }}
       >
         <GlobalHeader />
         <Hero />
@@ -139,7 +143,7 @@ export default function EmployeesLanding() {
             transition={{ duration: 0.35, ease: "easeInOut" }}
             style={{ position: "fixed", inset: 0, zIndex: 100 }}
           >
-            <IntroSlides onDone={() => setIntroDone(true)} />
+            <IntroSlides onDone={() => { window.scrollTo(0, 0); setIntroDone(true); }} />
           </motion.div>
         )}
       </AnimatePresence>
