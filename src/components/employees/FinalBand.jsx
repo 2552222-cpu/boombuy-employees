@@ -16,7 +16,7 @@ export default function FinalBand() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 style={{ fontSize: "clamp(18px, 3.5vw, 24px)", fontWeight: 900, color: "#fff", marginBottom: 20, letterSpacing: "-0.02em", lineHeight: 1.3 }}>
-            רוצים להכניס את בום ביי לארגון שלכם?
+            עוד לא הצטרפתם לבקשה?
           </h2>
           <motion.button
             onClick={scrollToSurvey}
@@ -26,7 +26,7 @@ export default function FinalBand() {
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             style={{ background: "#fff", color: "#0055CC", border: "none", padding: "14px 32px", borderRadius: 16, fontSize: 15, fontWeight: 800, cursor: "pointer" }}
           >
-            לבדוק התאמה לארגון שלי
+            הצטרפו עכשיו ←
           </motion.button>
         </motion.div>
       </div>

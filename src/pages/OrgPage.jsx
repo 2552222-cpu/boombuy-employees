@@ -419,8 +419,6 @@ export default function OrgPage() {
                   </button>
                 </div>
               </motion.div>
-            ) : !surveyDone ? (
-              <MicroSurvey key="survey" orgKey={orgSlug} orgName={group.orgName} onDone={handleSurveyDone} />
             ) : !showJoinForm ? (
               <motion.div key="cta" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <p style={{ fontSize: "14px", fontWeight: 700, marginBottom: "12px", textAlign: "center" }}>תודה על המשוב. עכשיו הצטרפו לבקשה</p>

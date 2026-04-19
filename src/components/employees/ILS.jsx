@@ -6,13 +6,10 @@ export default function ILS({ value, className = "", style = {} }) {
   return (
     <span
       className={className}
-      style={{
-        display: "inline-block",
-        whiteSpace: "nowrap",
-        ...style,
-      }}
+      style={{ display: "inline-flex", flexDirection: "row", alignItems: "baseline", gap: 2, direction: "ltr", ...style }}
     >
-      {clean} ₪
+      <span>{clean}</span>
+      <span>₪</span>
     </span>
   );
 }
