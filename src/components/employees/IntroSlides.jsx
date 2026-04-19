@@ -182,10 +182,25 @@ export default function IntroSlides({ onDone }) {
         cursor: "default",
       }}
     >
-      {/* Progress bars */}
+      {/* Logo */}
       <div style={{
         position: "absolute",
         top: "18px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 30,
+      }}>
+        <img
+          src="https://media.base44.com/images/public/69bc4105141d932b80ba9f27/09a5f43d9_500400.png"
+          alt="BoomBuy"
+          style={{ height: 36, width: "auto", objectFit: "contain" }}
+        />
+      </div>
+
+      {/* Progress bars */}
+      <div style={{
+        position: "absolute",
+        top: "70px",
         display: "flex",
         gap: "5px",
         width: "92%",
@@ -214,7 +229,7 @@ export default function IntroSlides({ onDone }) {
           justifyContent: "center",
           width: "100%",
           padding: "0 24px",
-          paddingTop: "88px",
+          paddingTop: "120px",
           boxSizing: "border-box",
           cursor: "pointer",
         }}
