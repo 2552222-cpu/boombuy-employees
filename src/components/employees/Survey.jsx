@@ -288,6 +288,18 @@ export default function Survey() {
                 </p>
                 <p style={{ fontSize: 12, color: "#86868B", marginBottom: 14, fontFamily: "var(--font-heebo)" }}>מומלץ — מגדיל ב-80% את הסיכוי לקדם</p>
 
+                <div style={{
+                  background:"rgba(0,0,0,0.04)",
+                  borderRadius:12,
+                  padding:"10px 16px",
+                  marginBottom:12,
+                  textAlign:"center",
+                }}>
+                  <span style={{fontSize:13,color:"#86868B",fontWeight:500}}>
+                    השבוע נפתחו בקשות ב-14 ארגונים חדשים
+                  </span>
+                </div>
+
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(
                     `היי 👋\n\nהצטרפתי לבקשה להכניס את בום ביי לארגון שלנו.\n\nזה אומר הטבות אמיתיות לאורך השנה — סופר, חשמל, חופשות ועוד — בלי שהארגון משלם שקל נוסף.\n\nרוצה לדעת כמה הנטו שלך יכול לגדול? לחץ כאן:\n${window.location.origin}/join/${normalizeOrgKey(orgName)}${myMemberId ? "?ref=" + myMemberId : ""}`
