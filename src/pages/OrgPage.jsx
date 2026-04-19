@@ -79,6 +79,9 @@ function OrgLanding({ orgName, count, currentTarget }) {
           <span style={{ fontSize: 20, fontWeight: 900, color: "#1A7A43" }}>{count}</span>
           <span style={{ fontSize: 13, fontWeight: 600, color: "#1A7A43" }}>עובדים מ{orgName} כבר הצטרפו</span>
         </div>
+        <p style={{fontSize:12, color:"#86868B", marginTop:8, textAlign:"center", fontFamily:"var(--font-heebo)"}}>
+          מצטרף לאלפי עובדים שכבר נהנים מבום ביי
+        </p>
       </motion.div>
 
       {/* OFFERS SLIDER */}
@@ -346,13 +349,16 @@ export default function OrgPage() {
           </div>
           <div style={{ height: "8px", background: "rgba(0,0,0,0.07)", borderRadius: "9999px", overflow: "hidden" }}>
             <motion.div
-              style={{ height: "100%", background: count >= currentTarget ? "#34C759" : "#0066CC", borderRadius: "9999px" }}
+              style={{ height: "100%", background: count >= TARGET_2 ? "#34C759" : count >= TARGET_1 ? "#FF9500" : "#0066CC", borderRadius: "9999px" }}
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             />
           </div>
-          <p style={{ fontSize: "12px", color: "#86868B", marginTop: "10px", lineHeight: 1.5 }}>
+          <p style={{ fontSize: 12, fontWeight: 700, color: count >= TARGET_2 ? "#34C759" : count >= TARGET_1 ? "#FF9500" : "#0066CC", marginTop: 6, textAlign: "center" }}>
+            {count >= TARGET_2 ? "🎉 הגעתם ליעד!" : count >= TARGET_1 ? `חמים! עוד ${TARGET_2 - count} ←` : `עוד ${TARGET_1 - count} להתחמם`}
+          </p>
+          <p style={{ fontSize: "12px", color: "#86868B", marginTop: "6px", lineHeight: 1.5 }}>
             ככל שיותר עובדים מצטרפים, הפנייה לוועד / רווחה / הנהלה מקבלת יותר משקל.
           </p>
         </motion.div>

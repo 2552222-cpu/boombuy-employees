@@ -277,6 +277,16 @@ export default function Survey() {
                   תוצאה מותאמת לארגון שלכם
                 </h3>
               </div>
+              <div style={{
+                display:"flex", alignItems:"flex-start", gap:10,
+                background:"#F0F6FF", borderRadius:12, padding:"12px 16px",
+                marginBottom:16, border:"1px solid rgba(0,102,204,0.12)"
+              }}>
+                <span style={{fontSize:18}}>📋</span>
+                <p style={{fontSize:13, color:"#3a3a3c", lineHeight:1.6, margin:0, fontFamily:"var(--font-heebo)"}}>
+                  ברגע שיצטרפו מספיק עובדים מהארגון שלכם — נפנה ישירות למנהלת הרווחה בשמכם. אתם לא צריכים לעשות כלום נוסף.
+                </p>
+              </div>
               <div style={{ background: "rgba(0,102,204,0.06)", border: "1px solid rgba(0,102,204,0.18)", borderRadius: 14, padding: "18px 20px", marginBottom: 20 }}>
                 <p style={{ fontSize: 16, fontWeight: 600, color: "#0066CC", lineHeight: 1.55, margin: 0, fontFamily: "var(--font-heebo)" }}>{resultText}</p>
               </div>
@@ -288,15 +298,12 @@ export default function Survey() {
                 </p>
                 <p style={{ fontSize: 12, color: "#86868B", marginBottom: 14, fontFamily: "var(--font-heebo)" }}>מומלץ — מגדיל ב-80% את הסיכוי לקדם</p>
 
-                <div style={{
-                  background:"rgba(0,0,0,0.04)",
-                  borderRadius:12,
-                  padding:"10px 16px",
-                  marginBottom:12,
-                  textAlign:"center",
-                }}>
-                  <span style={{fontSize:13,color:"#86868B",fontWeight:500}}>
-                    השבוע נפתחו בקשות ב-14 ארגונים חדשים
+                <div style={{ textAlign:"center", padding:"8px 0", marginBottom:8 }}>
+                  <span style={{
+                    fontSize:12, color:"#86868B", fontWeight:500,
+                    fontFamily:"var(--font-heebo)"
+                  }}>
+                    🔔 השבוע נפתחו בקשות ב-14 ארגונים חדשים
                   </span>
                 </div>
 
