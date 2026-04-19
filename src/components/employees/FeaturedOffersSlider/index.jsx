@@ -229,71 +229,79 @@ function OfferModal({ offer, isMobile, onClose, onPrev, onNext, onSelectIdx }) {
           <X size={18} color="#fff" />
         </button>
 
-        {/* IMAGE AREA */}
+        {/* LEFT COLUMN: image + thumbnails */}
         <div style={{
-          flex: isMobile ? "0 0 60%" : "1.6",
-          background: "#F5F5F7",
-          position: "relative",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          overflow: "hidden",
-          minHeight: isMobile ? 300 : "auto",
-        }}>
-          <button onClick={(e) => { e.stopPropagation(); onPrev(); }}
-            style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.06)", border: "none", width: 48, height: 48, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", zIndex: 5, boxShadow: "0 2px 10px rgba(0,0,0,0.12)" }}>
-            <ChevronRight size={22} color="#1D1D1F" />
-          </button>
-          <button onClick={(e) => { e.stopPropagation(); onNext(); }}
-            style={{ position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.06)", border: "none", width: 48, height: 48, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", zIndex: 5, boxShadow: "0 2px 10px rgba(0,0,0,0.12)" }}>
-            <ChevronLeft size={22} color="#1D1D1F" />
-          </button>
-
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={offer.id}
-              src={offer.img}
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
-              transition={{ duration: 0.22 }}
-              style={{ maxWidth: "80%", maxHeight: isMobile ? 200 : "70%", objectFit: "contain" }}
-              alt={offer.productName}
-            />
-          </AnimatePresence>
-        </div>
-
-        {/* THUMBNAILS — בין תמונה לתוכן */}
-        <div style={{
+          flex: isMobile ? "none" : "1.6",
           display: "flex",
-          gap: 8,
-          padding: isMobile ? "10px 16px" : "16px",
-          overflowX: "auto",
-          scrollbarWidth: "none",
+          flexDirection: "column",
           background: "#F5F5F7",
-          order: isMobile ? 2 : 0,
           flexShrink: 0,
         }}>
-          {OFFERS.map((o) => (
-            <button key={o.id}
-              onClick={(e) => { e.stopPropagation(); onSelectIdx(OFFERS.indexOf(o)); }}
-              style={{
-                width: 52, height: 52, borderRadius: 12, flexShrink: 0,
-                border: o.id === offer.id ? "2.5px solid #0055CC" : "2px solid transparent",
-                background: "#fff", padding: 3, cursor: "pointer",
-                boxShadow: o.id === offer.id ? "0 2px 8px rgba(0,85,204,0.3)" : "0 1px 4px rgba(0,0,0,0.08)",
-                overflow: "hidden",
-              }}
-            >
-              <img src={o.img} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 9 }} alt={o.productName} />
+          {/* IMAGE */}
+          <div style={{
+            flex: 1,
+            position: "relative",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            minHeight: isMobile ? 240 : 320,
+            overflow: "hidden",
+          }}>
+            <button onClick={(e) => { e.stopPropagation(); onPrev(); }}
+              style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.06)", border: "none", width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", zIndex: 5 }}>
+              <ChevronRight size={20} color="#1D1D1F" />
             </button>
-          ))}
+            <button onClick={(e) => { e.stopPropagation(); onNext(); }}
+              style={{ position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.06)", border: "none", width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", zIndex: 5 }}>
+              <ChevronLeft size={20} color="#1D1D1F" />
+            </button>
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={offer.id}
+                src={offer.img}
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.22 }}
+                style={{ maxWidth: "80%", maxHeight: isMobile ? 200 : "85%", objectFit: "contain" }}
+                alt={offer.productName}
+              />
+            </AnimatePresence>
+          </div>
+
+          {/* THUMBNAILS — מתחת לתמונה */}
+          <div style={{
+            display: "flex",
+            gap: 8,
+            padding: "12px 16px",
+            overflowX: "auto",
+            scrollbarWidth: "none",
+            borderTop: "1px solid rgba(0,0,0,0.06)",
+            background: "#F5F5F7",
+            flexShrink: 0,
+          }}>
+            {OFFERS.map((o) => (
+              <button key={o.id}
+                onClick={(e) => { e.stopPropagation(); onSelectIdx(OFFERS.indexOf(o)); }}
+                style={{
+                  width: 48, height: 48, borderRadius: 10, flexShrink: 0,
+                  border: o.id === offer.id ? "2.5px solid #0055CC" : "2px solid rgba(0,0,0,0.08)",
+                  background: "#fff", padding: 2, cursor: "pointer",
+                  boxShadow: o.id === offer.id ? "0 2px 8px rgba(0,85,204,0.3)" : "none",
+                  overflow: "hidden",
+                }}
+              >
+                <img src={o.img} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 8 }} alt={o.productName} />
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* CONTENT AREA */}
         <div style={{
           flex: 1,
-          padding: isMobile ? "20px 20px 28px" : "48px 40px",
+          padding: isMobile ? "20px 20px 28px" : "40px 36px",
           display: "flex", flexDirection: "column", justifyContent: "space-between",
           overflowY: "auto",
+          minWidth: 0,
         }}>
           <div>
             <p style={{ fontSize: 12, fontWeight: 700, color: "#0055CC", marginBottom: 6, letterSpacing: "0.05em" }}>
