@@ -255,7 +255,7 @@ export default function GroupRequestBlock({ defaultOrgName = "", defaultOrgKey =
             {/* Initiator special message */}
             {isInitiator && milestone >= 5 && (
               <div className="bg-primary/10 rounded-xl px-4 py-3 text-sm font-medium text-primary mb-4">
-                הבקשה שפתחת התחזקה – כבר {count} עובדים מ-{orgName} הצטרפו. עכשיו אפשר להעביר אותה הלאה עם הרבה יותר משקל.
+                הבקשה שפתחת התחזקה. כבר {count} עובדים מ-{orgName} הצטרפו. עכשיו אפשר להעביר אותה הלאה עם הרבה יותר משקל.
               </div>
             )}
 

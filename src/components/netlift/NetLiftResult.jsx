@@ -38,11 +38,11 @@ const CATEGORY_ORDER = ["super", "tech", "general", "insurance"];
 
 function ILS({ amount, size = 32, color = "#0055CC" }) {
   return (
-    <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+    <span style={{ display: "inline-flex", flexDirection: "row", alignItems: "baseline", gap: 3, whiteSpace: "nowrap" }}>
       <span style={{ fontSize: size, fontWeight: 900, color, lineHeight: 1 }}>
         {Number(amount).toLocaleString("he-IL")}
       </span>
-      <span style={{ fontSize: size * 0.6, fontWeight: 700, color }}> ₪</span>
+      <span style={{ fontSize: size * 0.6, fontWeight: 700, color }}>₪</span>
     </span>
   );
 }
@@ -171,7 +171,7 @@ export default function NetLiftResult({ result, answers, onRestart }) {
             הנטו שלך יכול לגדול
           </h2>
           <p style={{ fontSize: "14px", color: "#0066CC", fontWeight: 700 }}>
-            דרך מערכת ההטבות של BoomBuy
+            דרך מערכת ההטבות של בום ביי
           </p>
         </div>
 

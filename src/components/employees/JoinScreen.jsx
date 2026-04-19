@@ -187,7 +187,7 @@ export default function JoinScreen({ orgKey, orgName, onContinue }) {
               {/* Progress */}
               <div className="mb-5">
                 <div className="flex justify-between items-center text-xs md:text-sm text-muted-foreground mb-2 font-medium">
-                  <span>{count} מתוך {currentTarget} — {milestoneLabel}</span>
+                  <span>{count} מתוך {currentTarget}. {milestoneLabel}</span>
                   <span>{Math.round(progressPercent)}%</span>
                 </div>
                 <motion.div
@@ -202,7 +202,7 @@ export default function JoinScreen({ orgKey, orgName, onContinue }) {
               <p className="text-sm md:text-base text-muted-foreground">
                 {count >= TARGET_2
                   ? 'כל הצטרפות נוספת מחזקת את הפנייה לוועד / הנהלה.'
-                  : `נשארים עוד ${remainingToTarget} עובדים כדי להגיע ל-${currentTarget} — רוצה לעזור לחזק את הבקשה?`}
+                  : `נשארים עוד ${remainingToTarget} עובדים כדי להגיע ל-${currentTarget}. רוצה לעזור לחזק את הבקשה?`}
               </p>
             </div>
           </div>
