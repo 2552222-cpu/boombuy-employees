@@ -139,8 +139,8 @@ export default function TrustLogos() {
         @media (prefers-reduced-motion:no-preference){
           .jci-track{ animation-play-state:running !important; }
         }
-        .jci-left{ animation-name:jciSlideLeft; }
-        .jci-right{ animation-name:jciSlideRight; }
+        .jci-left{ animation-name:jciSlideLeft; animation-delay:0s; }
+        .jci-right{ animation-name:jciSlideRight; animation-delay:calc(-1 * var(--jci-dur) / 2); }
         @keyframes jciSlideLeft{
           from{ transform:translateX(0); }
           to{ transform:translateX(-50%); }
@@ -281,7 +281,7 @@ export default function TrustLogos() {
       {/* Desktop: horizontal marquee */}
       <div className="jci-rows">
         <HRow items={rowA} dir="left" duration={120} />
-        <HRow items={rowB} dir="right" duration={140} />
+        <HRow items={rowB} dir="right" duration={120} />
       </div>
 
       {/* Mobile: 2 vertical marquee columns */}
