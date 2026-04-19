@@ -46,17 +46,12 @@ export default function Hero() {
           {/* iPhone Section */}
           <div style={{ flex: "1", display: "flex", flexDirection: "column", alignItems: "center", minWidth: "300px" }}>
           <div style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-            <motion.div
-              animate={{ opacity: [0.5, 1, 0.5], scale: [0.9, 1.05, 0.9] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            <div
               style={{ position: "absolute", width: "100%", height: "100%", borderRadius: "50%", background: "radial-gradient(ellipse at center, rgba(120,80,255,0.25) 0%, rgba(37,99,235,0.2) 40%, transparent 70%)", filter: "blur(32px)", zIndex: 0 }}
             />
-            <motion.img
+            <img
               src={HERO_DATA.iPhoneImg}
               alt="iPhone 16 Pro"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: [20, 0, -14, 0] }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1], times: [0, 0.4, 0.7, 1], repeat: Infinity, repeatDelay: 2, repeatType: "loop" }}
               style={{ width: "100%", maxWidth: "416px", height: "auto", objectFit: "contain", display: "block", position: "relative", zIndex: 1 }}
             />
           </div>
