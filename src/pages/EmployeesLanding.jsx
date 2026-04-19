@@ -3,9 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import GlobalHeader from "../components/employees/GlobalHeader";
 import Hero from "../components/employees/Hero";
 import FeaturedOffersSlider from "../components/employees/FeaturedOffersSlider";
-
 import TrustLogos from "../components/employees/TrustLogos";
-
 import FinalBand from "../components/employees/FinalBand";
 import GlobalFooter from "../components/employees/GlobalFooter";
 import FloatingWhatsApp from "../components/employees/FloatingWhatsApp";
@@ -25,124 +23,126 @@ export default function EmployeesLanding() {
   const lastOrgName = localStorage.getItem("boomBuyLastOrgName");
 
   return (
-    <AnimatePresence mode="wait">
-      {!introDone ? (
-        <motion.div
-          key="intro"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          style={{ position: "fixed", inset: 0, zIndex: 100 }}
-        >
-          <IntroSlides onDone={() => setIntroDone(true)} />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="landing"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          dir="rtl"
-          style={{ overflowX: "hidden", maxWidth: "100vw" }}
-        >
-          <GlobalHeader />
-          <Hero />
-          <FeaturedOffersSlider />
-          <React.Suspense fallback={<div style={{ height: 400 }} />}>
-            <BenefitsShowcase />
-          </React.Suspense>
-          <React.Suspense fallback={<div style={{ height: 300 }} />}>
-            <EconomicSection />
-          </React.Suspense>
-          <ZeroBudget />
-          <TrustLogos />
+    <>
+      {/* Landing — תמיד מרונדר, מוסתר עד שה-intro נגמר */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: introDone ? 1 : 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        dir="rtl"
+        style={{ overflowX: "hidden", maxWidth: "100vw" }}
+      >
+        <GlobalHeader />
+        <Hero />
+        <FeaturedOffersSlider />
+        <React.Suspense fallback={<div style={{ height: 400 }} />}>
+          <BenefitsShowcase />
+        </React.Suspense>
+        <React.Suspense fallback={<div style={{ height: 300 }} />}>
+          <EconomicSection />
+        </React.Suspense>
+        <ZeroBudget />
+        <TrustLogos />
 
-          {/* NetLift Calculator — self-contained, no external navigation */}
-          {showNetLift ? (
-            <section id="value-calculator">
-              <React.Suspense fallback={<div style={{ height: 400 }} />}>
-                <NetLiftCalculator />
-              </React.Suspense>
-            </section>
-          ) : (
-            <section id="value-calculator" style={{ background: "linear-gradient(160deg, #0a0e1a, #0d1829)", padding: "64px 20px", textAlign: "center", direction: "rtl" }}>
-              <div style={{ maxWidth: 480, margin: "0 auto" }}>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "#4A9EFF", letterSpacing: "0.07em", marginBottom: 14 }}>EVI CHECK · NetLift Index</p>
-                <h2 style={{ fontSize: "clamp(24px, 5vw, 36px)", fontWeight: 900, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.2, marginBottom: 14 }}>
-                  בכמה יגדל הנטו האפקטיבי שלך?
-                </h2>
-                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.65, marginBottom: 32 }}>
-                  בדיקה מהירה בכמה ישתפר הערך הכלכלי שלך מהטבות הרווחה
-                </p>
-                <button
-                  onClick={() => setShowNetLift(true)}
-                  style={{
-                    background: "#0066CC",
-                    color: "#fff",
-                    fontWeight: 800,
-                    fontSize: 17,
-                    padding: "18px 40px",
-                    borderRadius: 20,
-                    border: "none",
-                    cursor: "pointer",
-                    fontFamily: "var(--font-heebo)",
-                    boxShadow: "0 8px 28px rgba(0,102,204,0.4)",
-                    width: "100%",
-                    maxWidth: 360,
-                  }}
-                >
-                  בדקו את הנטו שלי ←
-                </button>
-              </div>
-            </section>
-          )}
+        {showNetLift ? (
+          <section id="value-calculator">
+            <React.Suspense fallback={<div style={{ height: 400 }} />}>
+              <NetLiftCalculator />
+            </React.Suspense>
+          </section>
+        ) : (
+          <section id="value-calculator" style={{ background: "linear-gradient(160deg, #0a0e1a, #0d1829)", padding: "64px 20px", textAlign: "center", direction: "rtl" }}>
+            <div style={{ maxWidth: 480, margin: "0 auto" }}>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "#4A9EFF", letterSpacing: "0.07em", marginBottom: 14 }}>EVI CHECK · NetLift Index</p>
+              <h2 style={{ fontSize: "clamp(24px, 5vw, 36px)", fontWeight: 900, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.2, marginBottom: 14 }}>
+                בכמה יגדל הנטו האפקטיבי שלך?
+              </h2>
+              <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.65, marginBottom: 32 }}>
+                בדיקה מהירה בכמה ישתפר הערך הכלכלי שלך מהטבות הרווחה
+              </p>
+              <button
+                onClick={() => setShowNetLift(true)}
+                style={{
+                  background: "#0066CC",
+                  color: "#fff",
+                  fontWeight: 800,
+                  fontSize: 17,
+                  padding: "18px 40px",
+                  borderRadius: 20,
+                  border: "none",
+                  cursor: "pointer",
+                  fontFamily: "var(--font-heebo)",
+                  boxShadow: "0 8px 28px rgba(0,102,204,0.4)",
+                  width: "100%",
+                  maxWidth: 360,
+                }}
+              >
+                בדקו את הנטו שלי ←
+              </button>
+            </div>
+          </section>
+        )}
 
-          <React.Suspense fallback={<div style={{ height: 300 }} />}>
-            <Testimonials />
-          </React.Suspense>
+        <React.Suspense fallback={<div style={{ height: 300 }} />}>
+          <Testimonials />
+        </React.Suspense>
 
-          {lastOrgKey ? (
-            <section id="survey-section" style={{ background: "#F5F5F7", padding: "60px 16px" }}>
-              <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
-                <div style={{ fontSize: 32, marginBottom: 12 }}>👋</div>
-                <h2 style={{ fontSize: "clamp(22px,4vw,28px)", fontWeight: 900, color: "#1D1D1F", marginBottom: 10, letterSpacing: "-0.025em" }}>
-                  כבר פתחתם בקשה עבור {lastOrgName}
-                </h2>
-                <p style={{ fontSize: 14, color: "#86868B", marginBottom: 24, lineHeight: 1.6 }}>
-                  הבקשה שלכם פעילה. כדי להגדיל את הסיכוי — שתפו עוד עמיתים
-                </p>
-                <a
-                  href={`/join/${lastOrgKey}`}
-                  style={{
-                    display: "block", background: "#0066CC", color: "#fff",
-                    fontWeight: 800, fontSize: 16, padding: "16px",
-                    borderRadius: 14, textDecoration: "none",
-                    boxShadow: "0 6px 20px rgba(0,102,204,0.28)",
-                    marginBottom: 12,
-                  }}
-                >
-                  חזרו לעמוד הבקשה שלכם ←
-                </a>
-                <button
-                  onClick={() => {
-                    localStorage.removeItem("boomBuyLastOrgKey");
-                    localStorage.removeItem("boomBuyLastOrgName");
-                    window.location.reload();
-                  }}
-                  style={{ background: "none", border: "none", color: "#AEAEB2", fontSize: 13, cursor: "pointer", fontFamily: "var(--font-heebo)" }}
-                >
-                  פתחו בקשה לארגון אחר
-                </button>
-              </div>
-            </section>
-          ) : (
-            <Survey />
-          )}
-          <FinalBand />
-          <GlobalFooter />
-          <FloatingWhatsApp />
-        </motion.div>
-      )}
-    </AnimatePresence>
+        {lastOrgKey ? (
+          <section id="survey-section" style={{ background: "#F5F5F7", padding: "60px 16px" }}>
+            <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
+              <div style={{ fontSize: 32, marginBottom: 12 }}>👋</div>
+              <h2 style={{ fontSize: "clamp(22px,4vw,28px)", fontWeight: 900, color: "#1D1D1F", marginBottom: 10, letterSpacing: "-0.025em" }}>
+                כבר פתחתם בקשה עבור {lastOrgName}
+              </h2>
+              <p style={{ fontSize: 14, color: "#86868B", marginBottom: 24, lineHeight: 1.6 }}>
+                הבקשה שלכם פעילה. כדי להגדיל את הסיכוי — שתפו עוד עמיתים
+              </p>
+              <a
+                href={`/join/${lastOrgKey}`}
+                style={{
+                  display: "block", background: "#0066CC", color: "#fff",
+                  fontWeight: 800, fontSize: 16, padding: "16px",
+                  borderRadius: 14, textDecoration: "none",
+                  boxShadow: "0 6px 20px rgba(0,102,204,0.28)",
+                  marginBottom: 12,
+                }}
+              >
+                חזרו לעמוד הבקשה שלכם ←
+              </a>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("boomBuyLastOrgKey");
+                  localStorage.removeItem("boomBuyLastOrgName");
+                  window.location.reload();
+                }}
+                style={{ background: "none", border: "none", color: "#AEAEB2", fontSize: 13, cursor: "pointer", fontFamily: "var(--font-heebo)" }}
+              >
+                פתחו בקשה לארגון אחר
+              </button>
+            </div>
+          </section>
+        ) : (
+          <Survey />
+        )}
+        <FinalBand />
+        <GlobalFooter />
+        <FloatingWhatsApp />
+      </motion.div>
+
+      {/* Intro — מעל הכל, נעלם בצורה חלקה */}
+      <AnimatePresence>
+        {!introDone && (
+          <motion.div
+            key="intro"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            style={{ position: "fixed", inset: 0, zIndex: 100 }}
+          >
+            <IntroSlides onDone={() => setIntroDone(true)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
