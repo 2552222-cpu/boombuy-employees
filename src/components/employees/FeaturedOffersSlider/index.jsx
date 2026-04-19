@@ -231,12 +231,12 @@ function OfferModal({ offer, isMobile, onClose, onPrev, onNext, onSelectIdx }) {
 
         {/* IMAGE AREA */}
         <div style={{
-          flex: isMobile ? "0 0 58%" : "1.2",
+          flex: isMobile ? "0 0 60%" : "1.6",
           background: "#F5F5F7",
           position: "relative",
           display: "flex", alignItems: "center", justifyContent: "center",
           overflow: "hidden",
-          minHeight: isMobile ? 240 : "auto",
+          minHeight: isMobile ? 300 : "auto",
         }}>
           <button onClick={(e) => { e.stopPropagation(); onPrev(); }}
             style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.06)", border: "none", width: 48, height: 48, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", zIndex: 5, boxShadow: "0 2px 10px rgba(0,0,0,0.12)" }}>
@@ -261,28 +261,29 @@ function OfferModal({ offer, isMobile, onClose, onPrev, onNext, onSelectIdx }) {
           </AnimatePresence>
         </div>
 
-        {/* THUMBNAILS — מחוץ לתמונה */}
+        {/* THUMBNAILS — בין תמונה לתוכן */}
         <div style={{
           display: "flex",
-          justifyContent: "center",
-          gap: 6,
-          padding: isMobile ? "10px 10px 0" : "12px 16px 0",
+          gap: 8,
+          padding: isMobile ? "10px 16px" : "16px",
           overflowX: "auto",
-          flexWrap: "nowrap",
           scrollbarWidth: "none",
+          background: "#F5F5F7",
+          order: isMobile ? 2 : 0,
+          flexShrink: 0,
         }}>
           {OFFERS.map((o) => (
             <button key={o.id}
               onClick={(e) => { e.stopPropagation(); onSelectIdx(OFFERS.indexOf(o)); }}
               style={{
-                width: 44, height: 44, borderRadius: 10, flexShrink: 0,
-                border: o.id === offer.id ? "2px solid #0055CC" : "2px solid transparent",
-                background: "#fff", padding: 2, cursor: "pointer",
-                boxShadow: o.id === offer.id ? "0 2px 8px rgba(0,85,204,0.3)" : "0 1px 4px rgba(0,0,0,0.1)",
+                width: 52, height: 52, borderRadius: 12, flexShrink: 0,
+                border: o.id === offer.id ? "2.5px solid #0055CC" : "2px solid transparent",
+                background: "#fff", padding: 3, cursor: "pointer",
+                boxShadow: o.id === offer.id ? "0 2px 8px rgba(0,85,204,0.3)" : "0 1px 4px rgba(0,0,0,0.08)",
                 overflow: "hidden",
               }}
             >
-              <img src={o.img} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 8 }} alt={o.productName} />
+              <img src={o.img} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 9 }} alt={o.productName} />
             </button>
           ))}
         </div>
@@ -316,18 +317,18 @@ function OfferModal({ offer, isMobile, onClose, onPrev, onNext, onSelectIdx }) {
           </div>
 
           <div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 24 }}>
-              <div style={{ background: "rgba(0,0,0,0.04)", borderRadius: 16, padding: "14px 10px", textAlign: "center" }}>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "#86868B", marginBottom: 6, letterSpacing: "0.03em" }}>{offer.labelOld}</p>
-                <p style={{ fontSize: 17, fontWeight: 900, color: "#86868B", textDecoration: "line-through" }}>{offer.priceOld} ₪</p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 20 }}>
+              <div style={{ background: "rgba(0,0,0,0.04)", borderRadius: 14, padding: "12px 8px", textAlign: "center", minWidth: 0, overflow: "hidden" }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "#86868B", marginBottom: 4 }}>{offer.labelOld}</p>
+                <p style={{ fontSize: 15, fontWeight: 900, color: "#86868B", textDecoration: "line-through", whiteSpace: "nowrap" }}>{offer.priceOld} ₪</p>
               </div>
-              <div style={{ background: "linear-gradient(145deg, #0066CC, #004fa3)", borderRadius: 16, padding: "14px 10px", textAlign: "center", boxShadow: "0 6px 20px rgba(0,102,204,0.3)" }}>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.75)", marginBottom: 6, letterSpacing: "0.03em" }}>מחיר לעובד</p>
-                <p style={{ fontSize: 19, fontWeight: 900, color: "#fff" }}>{offer.priceNew} ₪</p>
+              <div style={{ background: "linear-gradient(145deg, #0066CC, #004fa3)", borderRadius: 14, padding: "12px 8px", textAlign: "center", minWidth: 0, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,102,204,0.3)" }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.75)", marginBottom: 4 }}>מחיר לעובד</p>
+                <p style={{ fontSize: 17, fontWeight: 900, color: "#fff", whiteSpace: "nowrap" }}>{offer.priceNew} ₪</p>
               </div>
-              <div style={{ background: "rgba(52,199,89,0.1)", border: "1px solid rgba(52,199,89,0.2)", borderRadius: 16, padding: "14px 10px", textAlign: "center" }}>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "#2D9A5B", marginBottom: 6, letterSpacing: "0.03em" }}>חיסכון</p>
-                <p style={{ fontSize: 19, fontWeight: 900, color: "#1A7A43" }}>{offer.saving} ₪</p>
+              <div style={{ background: "rgba(52,199,89,0.1)", border: "1px solid rgba(52,199,89,0.2)", borderRadius: 14, padding: "12px 8px", textAlign: "center", minWidth: 0, overflow: "hidden" }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "#2D9A5B", marginBottom: 4 }}>חיסכון</p>
+                <p style={{ fontSize: 17, fontWeight: 900, color: "#1A7A43", whiteSpace: "nowrap" }}>{offer.saving} ₪</p>
               </div>
             </div>
 
