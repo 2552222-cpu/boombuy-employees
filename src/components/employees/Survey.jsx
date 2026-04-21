@@ -291,8 +291,8 @@ export default function Survey() {
                 placeholder="כתובת מייל (אופציונלי)"
                 style={{ width: "100%", padding: "13px 15px", fontSize: "15px", borderRadius: "11px", border: "1px solid rgba(0,0,0,0.12)", background: "#fff", fontFamily: "var(--font-heebo)", marginBottom: "14px", textAlign: "right", boxSizing: "border-box" }}
               />
-              <button onClick={handleFinish} disabled={loading}
-                style={{ width: "100%", background: "#0066CC", color: "#fff", fontWeight: 700, fontSize: "15px", padding: "14px", borderRadius: "12px", border: "none", cursor: "pointer", fontFamily: "var(--font-heebo)", marginBottom: "10px" }}>
+              <button onClick={handleFinish} disabled={loading || !initiatorName.trim()}
+                style={{ width: "100%", background: initiatorName.trim() ? "#0066CC" : "#C7C7CC", color: "#fff", fontWeight: 700, fontSize: "15px", padding: "14px", borderRadius: "12px", border: "none", cursor: initiatorName.trim() ? "pointer" : "default", fontFamily: "var(--font-heebo)", marginBottom: "10px" }}>
                 סיימו וקבלו לינק לשיתוף
               </button>
             </motion.div>
