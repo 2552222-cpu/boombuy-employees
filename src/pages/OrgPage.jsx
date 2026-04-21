@@ -124,7 +124,7 @@ const MICRO_QUESTIONS = [
       "זה יעזור לי מאוד לעבור את החודש",
       "זה בדיוק מה שהארגון שלי צריך",
       "זה יתן לי ערך אמיתי לאורך השנה",
-      "מעניין, אבל עוד לא בטוח"
+      "מעניין, עוד לא בטוח"
     ]
   },
   {
@@ -361,7 +361,7 @@ export default function OrgPage() {
             />
           </div>
           <p style={{ fontSize: 12, fontWeight: 700, color: count >= TARGET_2 ? "#34C759" : count >= TARGET_1 ? "#FF9500" : "#0066CC", marginTop: 6, textAlign: "center" }}>
-            {count >= TARGET_2 ? "🎉 הגעתם ליעד!" : count >= TARGET_1 ? `חמים! עוד ${TARGET_2 - count} ←` : `עוד ${TARGET_1 - count} להתחמם`}
+            {count >= TARGET_2 ? "🎉 הגעתם ליעד!" : count >= TARGET_1 ? `חמים! עוד ${TARGET_2 - count}` : `עוד ${TARGET_1 - count} להתחמם`}
           </p>
           <p style={{ fontSize: "12px", color: "#86868B", marginTop: "6px", lineHeight: 1.5 }}>
             ככל שיותר עובדים מצטרפים, הפנייה לוועד / רווחה / הנהלה מקבלת יותר משקל.

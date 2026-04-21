@@ -284,7 +284,7 @@ export default function Survey() {
               }}>
                 <span style={{fontSize:18}}>📋</span>
                 <p style={{fontSize:13, color:"#3a3a3c", lineHeight:1.6, margin:0, fontFamily:"var(--font-heebo)"}}>
-                  ברגע שיצטרפו מספיק עובדים מהארגון שלכם — נפנה ישירות למנהלת הרווחה בשמכם. אתם לא צריכים לעשות כלום נוסף.
+                  ברגע שיצטרפו מספיק עובדים מהארגון שלכם. נפנה ישירות למנהלת הרווחה בשמכם. אתם לא צריכים לעשות כלום נוסף.
                 </p>
               </div>
               <div style={{ background: "rgba(0,102,204,0.06)", border: "1px solid rgba(0,102,204,0.18)", borderRadius: 14, padding: "18px 20px", marginBottom: 20 }}>
@@ -294,9 +294,9 @@ export default function Survey() {
               <div style={{ background: "rgba(0,102,204,0.06)", border: "1px solid rgba(0,102,204,0.18)", borderRadius: 20, padding: "18px 20px", textAlign: "center" }}>
                 <p style={{ fontSize: 28, fontWeight: 900, color: "#0066CC", marginBottom: 4, fontFamily: "var(--font-heebo)" }}>80%</p>
                 <p style={{ fontSize: 14, fontWeight: 600, color: "#1D1D1F", marginBottom: 10, lineHeight: 1.45, fontFamily: "var(--font-heebo)" }}>
-                  ככל שיותר עובדים יצטרפו לבקשה — כך גדל הסיכוי שהארגון יאמץ את הפלטפורמה
+                  ככל שיותר עובדים יצטרפו לבקשה. כך גדל הסיכוי שהארגון יאמץ את הפלטפורמה
                 </p>
-                <p style={{ fontSize: 12, color: "#86868B", marginBottom: 14, fontFamily: "var(--font-heebo)" }}>מומלץ — מגדיל ב-80% את הסיכוי לקדם</p>
+                <p style={{ fontSize: 12, color: "#86868B", marginBottom: 14, fontFamily: "var(--font-heebo)" }}>מומלץ. מגדיל ב-80% את הסיכוי לקדם</p>
 
                 <div style={{ textAlign:"center", padding:"8px 0", marginBottom:8 }}>
                   <span style={{
@@ -309,7 +309,7 @@ export default function Survey() {
 
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(
-                    `היי 👋\n\nהצטרפתי לבקשה להכניס את בום ביי לארגון שלנו.\n\nזה אומר הטבות אמיתיות לאורך השנה — סופר, חשמל, חופשות ועוד — בלי שהארגון משלם שקל נוסף.\n\nרוצה לדעת כמה הנטו שלך יכול לגדול? לחץ כאן: ${window.location.origin}/join/${normalizeOrgKey(orgName)}${myMemberId ? "?ref=" + myMemberId : ""}`
+                    `היי 👋\n\nהצטרפתי לבקשה להכניס את בום ביי לארגון שלנו.\n\nזה אומר הטבות אמיתיות לאורך השנה. סופר, חשמל, חופשות ועוד. בלי שהארגון משלם שקל נוסף.\n\nרוצה לדעת כמה הנטו שלך יכול לגדול? לחץ כאן: ${window.location.origin}/join/${normalizeOrgKey(orgName)}${myMemberId ? "?ref=" + myMemberId : ""}`
                   )}`}
                   target="_blank" rel="noopener noreferrer"
                   style={{ display: "block", background: "#25D366", color: "#fff", textDecoration: "none", padding: "14px", borderRadius: 14, fontSize: 15, fontWeight: 800, marginBottom: 10, fontFamily: "var(--font-heebo)" }}>
