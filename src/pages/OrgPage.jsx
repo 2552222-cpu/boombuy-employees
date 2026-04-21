@@ -104,7 +104,7 @@ function OrgLanding({ orgName, count, currentTarget }) {
             onClick={() => setShowNetLift(true)}
             style={{ background: "#0066CC", color: "#fff", fontWeight: 800, fontSize: 16, padding: "16px 36px", borderRadius: 16, border: "none", cursor: "pointer", fontFamily: "var(--font-heebo)", boxShadow: "0 8px 28px rgba(0,102,204,0.4)" }}
           >
-            בדקו את הנטו שלי ←
+            בדקו את הנטו שלי
           </button>
         </motion.div>
       )}
@@ -408,7 +408,7 @@ export default function OrgPage() {
                 <p style={{ fontSize: "14px", fontWeight: 700, marginBottom: "12px", textAlign: "center" }}>תודה על המשוב. עכשיו הצטרפו לבקשה</p>
                 <button onClick={() => setShowJoinForm(true)}
                   style={{ width: "100%", background: "#0066CC", color: "#fff", fontWeight: 800, fontSize: "16px", padding: "15px", borderRadius: "13px", border: "none", cursor: "pointer", fontFamily: "var(--font-heebo)", boxShadow: "0 6px 20px rgba(0,102,204,0.25)" }}>
-                  אני מצטרף לבקשה ←
+                  אני מצטרף לבקשה
                 </button>
                 <p style={{ fontSize: "12px", color: "#AEAEB2", textAlign: "center", marginTop: "10px" }}>מידע בסיסי בלבד · לא נמכר ולא משותף</p>
               </motion.div>

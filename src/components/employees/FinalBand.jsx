@@ -26,7 +26,7 @@ export default function FinalBand() {
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             style={{ background: "#fff", color: "#0055CC", border: "none", padding: "14px 32px", borderRadius: 16, fontSize: 15, fontWeight: 800, cursor: "pointer" }}
           >
-            הצטרפו עכשיו ←
+            הצטרפו עכשיו
           </motion.button>
         </motion.div>
       </div>

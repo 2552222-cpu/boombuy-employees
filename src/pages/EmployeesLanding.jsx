@@ -81,7 +81,7 @@ export default function EmployeesLanding() {
                   maxWidth: 360,
                 }}
               >
-                בדקו את הנטו שלי ←
+                בדקו את הנטו שלי
               </button>
             </div>
           </section>
@@ -111,7 +111,7 @@ export default function EmployeesLanding() {
                   marginBottom: 12,
                 }}
               >
-                חזרו לעמוד הבקשה שלכם ←
+                חזרו לעמוד הבקשה שלכם
               </a>
               <button
                 onClick={() => {

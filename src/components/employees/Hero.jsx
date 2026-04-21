@@ -7,8 +7,8 @@ const HERO_DATA = {
   headline: "הנטו שלך שווה יותר",
   headline2: "ממה שאתה חושב",
   subheadline: "גלו איך לקבל הרבה יותר מהתקציב הקיים של מקום העבודה שלכם, בלי שהמעסיק יצטרך לשלם שקל יותר.",
-  primaryCTA: "אני רוצה לראות איך זה נראה ←",
-  mobileCTA: "גלו את ההטבות ↓",
+  primaryCTA: "אני רוצה לראות איך זה נראה",
+  mobileCTA: "גלו את ההטבות",
   iPhoneImg: "https://media.base44.com/images/public/69bc4105141d932b80ba9f27/66514fe66_-2026-02-18T150849922.png",
 };
 
@@ -133,7 +133,7 @@ export default function Hero() {
                 letterSpacing: "-0.01em",
                 textShadow: "0 0 12px rgba(74,158,255,0.5)",
               }}>
-                כמה הנטו שלך יכול לגדול ↓
+                כמה הנטו שלך יכול לגדול
               </span>
             </motion.div>
 

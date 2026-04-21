@@ -265,7 +265,7 @@ export default function Survey() {
               />
               <button onClick={handleFinish} disabled={loading}
                 style={{ width: "100%", background: "#0066CC", color: "#fff", fontWeight: 700, fontSize: "15px", padding: "14px", borderRadius: "12px", border: "none", cursor: "pointer", fontFamily: "var(--font-heebo)", marginBottom: "10px" }}>
-                סיימו וקבלו לינק לשיתוף ←
+                סיימו וקבלו לינק לשיתוף
               </button>
             </motion.div>
 
@@ -309,11 +309,11 @@ export default function Survey() {
 
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(
-                    `היי 👋\n\nהצטרפתי לבקשה להכניס את בום ביי לארגון שלנו.\n\nזה אומר הטבות אמיתיות לאורך השנה — סופר, חשמל, חופשות ועוד — בלי שהארגון משלם שקל נוסף.\n\nרוצה לדעת כמה הנטו שלך יכול לגדול? לחץ כאן:\n${window.location.origin}/join/${normalizeOrgKey(orgName)}${myMemberId ? "?ref=" + myMemberId : ""}`
+                    `היי 👋\n\nהצטרפתי לבקשה להכניס את בום ביי לארגון שלנו.\n\nזה אומר הטבות אמיתיות לאורך השנה — סופר, חשמל, חופשות ועוד — בלי שהארגון משלם שקל נוסף.\n\nרוצה לדעת כמה הנטו שלך יכול לגדול? לחץ כאן: ${window.location.origin}/join/${normalizeOrgKey(orgName)}${myMemberId ? "?ref=" + myMemberId : ""}`
                   )}`}
                   target="_blank" rel="noopener noreferrer"
                   style={{ display: "block", background: "#25D366", color: "#fff", textDecoration: "none", padding: "14px", borderRadius: 14, fontSize: 15, fontWeight: 800, marginBottom: 10, fontFamily: "var(--font-heebo)" }}>
-                  שתפו עמיתים בוואטסאפ ← (מומלץ)
+                  שתפו עמיתים בוואטסאפ (מומלץ)
                 </a>
 
 
