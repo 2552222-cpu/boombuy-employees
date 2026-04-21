@@ -186,7 +186,7 @@ export default function TrustLogos() {
         [data-logo-index="17"] img { transform: scale(1.2); }
         [data-logo-index="18"] img { transform: scale(1.25); }
         [data-logo-index="20"] img { transform: scale(1.3); }
-        [data-logo-index="24"] img { transform: scale(1.8); }
+        [data-logo-index="24"] img { transform: scale(2.4); padding: 0 !important; }
         [data-logo-index="25"] img { transform: scale(1.2); }
         [data-logo-index="26"] img { transform: scale(0.72); }
 
@@ -227,8 +227,8 @@ export default function TrustLogos() {
         }
         .jci-vcol-wrap:hover .jci-vcol-track{ animation-play-state:paused; }
         .jci-vcol-card{
-          flex:0 0 100px;
-          height:100px;
+          flex:0 0 80px;
+          height:80px;
           display:flex;
           align-items:center;
           justify-content:center;
@@ -236,11 +236,10 @@ export default function TrustLogos() {
           border-bottom:1px solid rgba(0,0,0,0.05);
         }
         .jci-vcol-card img{
-          width:90%;
-          height:80px;
+          width:85%;
+          height:64px;
           object-fit:contain;
-          padding:8px;
-          /* Neutralize per-logo scale in mobile columns */
+          padding:6px;
           transform:none !important;
         }
 
@@ -269,7 +268,7 @@ export default function TrustLogos() {
           .jci-rows{ display:none !important; }
           .jci-vcols{ display:flex !important; }
           .jci-trust{ display:block; font-size:12px; margin-top:32px; }
-          .jci-vcol-wrap{ height:300px; }
+          .jci-vcol-wrap{ height:400px; }
         }
       `}</style>
 
