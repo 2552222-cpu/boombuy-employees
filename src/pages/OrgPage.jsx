@@ -335,9 +335,8 @@ export default function OrgPage() {
     <div dir="rtl" style={{ minHeight: "100vh", background: "#F5F5F7", fontFamily: "var(--font-heebo)", padding: "0 0 60px" }}>
       {/* Header */}
       <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.06)", padding: "12px 20px", display: "flex", justifyContent: "center" }}>
-        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
-          <img src="https://media.base44.com/images/public/69bc4105141d932b80ba9f27/aceff4e0c_500400.png" alt="BoomBuy" style={{ height: 32, objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; e.currentTarget.nextSibling.style.display = "block"; }} />
-          <div style={{ display: "none", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 900, color: "#0066CC", letterSpacing: "-0.03em", fontFamily: "var(--font-heebo)" }}>BoomBuy</div>
+        <a href="/" style={{ textDecoration: "none" }}>
+          <img src="https://media.base44.com/images/public/69bc4105141d932b80ba9f27/aceff4e0c_500400.png" alt="BoomBuy" style={{ height: 44, objectFit: "contain" }} />
         </a>
       </div>
 
