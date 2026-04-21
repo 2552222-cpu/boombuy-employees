@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 
+const MICRO_Q = [
+  { q: "אם הארגון שלך יצטרף, באיזה תחום תרגיש את זה הכי חזק?", opts: ["סופר ויוקר המחיה", "חשמל ואלקטרוניקה", "חופשות ובילויים", "הטבות יומיות"] },
+  { q: "איזה משפט הכי מדויק מבחינתך?", opts: ["זה יעזור לי מאוד לעבור את החודש", "זה בדיוק מה שהארגון שלי צריך", "זה יתן לי ערך אמיתי לאורך השנה", "עוד לא בטוח"] },
+  { q: "האם הייתה ממליץ לעמית עבודה להצטרף?", opts: ["בהחלט כן", "כנראה שכן", "לא בטוח"] },
+];
+
 const ORG_SIZE_OPTIONS = [
   { label: "עד 50 עובדים" },
   { label: "50-250 עובדים" },
@@ -46,6 +52,9 @@ export default function Survey() {
   const [initiatorEmail, setInitiatorEmail] = useState("");
   const [myMemberId, setMyMemberId] = useState("");
   const [stepHistory, setStepHistory] = useState([]);
+  const [microStep, setMicroStep] = useState(0);
+  const [microAnswers, setMicroAnswers] = useState([]);
+  const [microDone, setMicroDone] = useState(false);
 
   const isLocked = step === "result";
 
@@ -78,6 +87,25 @@ export default function Survey() {
     if (pain === "חשמל וטקסטיל")
       return "מוצרי חשמל ומותגים הם הכאב המרכזי. מחירי היבואן של בום ביי על Apple, Samsung ועוד יהיו ההבדל הכי גדול עבורכם.";
     return "נראה שהטבות יוקר המחיה. הנחות בסופר, פארם ומוצרי יומיום. יהיו המשמעותיות ביותר עבור העובדים בארגון שלכם.";
+  };
+
+  const handleMicroAnswer = async (opt) => {
+    const next = [...microAnswers, opt];
+    setMicroAnswers(next);
+    if (next.length < MICRO_Q.length) {
+      setMicroStep(s => s + 1);
+    } else {
+      const orgKey = normalizeOrgKey(orgName);
+      try {
+        await base44.entities.SurveyResponse.create({
+          orgKey, orgName: orgName.trim(),
+          answer1: next[0], answer2: next[1], answer3: next[2],
+          sessionToken: getBrowserToken(),
+          isInitiator: true,
+        });
+      } catch {}
+      setMicroDone(true);
+    }
   };
 
   const handleFinish = async () => {
@@ -271,53 +299,49 @@ export default function Survey() {
 
           ) : (
             <motion.div key="result" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14 }} transition={{ duration: 0.28 }}>
-              <div style={{ textAlign: "center", marginBottom: "14px" }}>
-                <div style={{ fontSize: 32, marginBottom: 12 }}>✅</div>
-                <h3 style={{ fontSize: "22px", fontWeight: 900, marginBottom: "14px", letterSpacing: "-0.02em", fontFamily: "var(--font-heebo)", color: "#1D1D1F" }}>
-                  תוצאה מותאמת לארגון שלכם
-                </h3>
-              </div>
-              <div style={{
-                display:"flex", alignItems:"flex-start", gap:10,
-                background:"#F0F6FF", borderRadius:12, padding:"12px 16px",
-                marginBottom:16, border:"1px solid rgba(0,102,204,0.12)"
-              }}>
-                <span style={{fontSize:18}}>📋</span>
-                <p style={{fontSize:13, color:"#3a3a3c", lineHeight:1.6, margin:0, fontFamily:"var(--font-heebo)"}}>
-                  ברגע שיצטרפו מספיק עובדים מהארגון שלכם. נפנה ישירות למנהלת הרווחה בשמכם. אתם לא צריכים לעשות כלום נוסף.
-                </p>
-              </div>
-              <div style={{ background: "rgba(0,102,204,0.06)", border: "1px solid rgba(0,102,204,0.18)", borderRadius: 14, padding: "18px 20px", marginBottom: 20 }}>
-                <p style={{ fontSize: 16, fontWeight: 600, color: "#0066CC", lineHeight: 1.55, margin: 0, fontFamily: "var(--font-heebo)" }}>{resultText}</p>
-              </div>
-
-              <div style={{ background: "rgba(0,102,204,0.06)", border: "1px solid rgba(0,102,204,0.18)", borderRadius: 20, padding: "18px 20px", textAlign: "center" }}>
-                <p style={{ fontSize: 28, fontWeight: 900, color: "#0066CC", marginBottom: 4, fontFamily: "var(--font-heebo)" }}>80%</p>
-                <p style={{ fontSize: 14, fontWeight: 600, color: "#1D1D1F", marginBottom: 10, lineHeight: 1.45, fontFamily: "var(--font-heebo)" }}>
-                  ככל שיותר עובדים יצטרפו לבקשה. כך גדל הסיכוי שהארגון יאמץ את הפלטפורמה
-                </p>
-                <p style={{ fontSize: 12, color: "#86868B", marginBottom: 14, fontFamily: "var(--font-heebo)" }}>מומלץ. מגדיל ב-80% את הסיכוי לקדם</p>
-
-                <div style={{ textAlign:"center", padding:"8px 0", marginBottom:8 }}>
-                  <span style={{
-                    fontSize:12, color:"#86868B", fontWeight:500,
-                    fontFamily:"var(--font-heebo)"
-                  }}>
-                    🔔 השבוע נפתחו בקשות ב-14 ארגונים חדשים
-                  </span>
-                </div>
-
-                <a
-                  href={`https://wa.me/?text=${encodeURIComponent(
-                    `היי 👋\n\nהצטרפתי לבקשה להכניס את בום ביי לארגון שלנו.\n\nזה אומר הטבות אמיתיות לאורך השנה. סופר, חשמל, חופשות ועוד. בלי שהארגון משלם שקל נוסף.\n\nרוצה לדעת כמה הנטו שלך יכול לגדול? לחץ כאן: ${window.location.origin}/join/${normalizeOrgKey(orgName)}${myMemberId ? "?ref=" + myMemberId : ""}`
-                  )}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{ display: "block", background: "#25D366", color: "#fff", textDecoration: "none", padding: "14px", borderRadius: 14, fontSize: 15, fontWeight: 800, marginBottom: 10, fontFamily: "var(--font-heebo)" }}>
-                  שתפו עמיתים בוואטסאפ (מומלץ)
-                </a>
-
-
-              </div>
+              {!microDone ? (
+                <AnimatePresence mode="wait">
+                  <motion.div key={microStep} initial={{ opacity: 0, x: 14 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -14 }} transition={{ duration: 0.25 }}>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: "#0066CC", letterSpacing: ".06em", marginBottom: 12, fontFamily: "var(--font-heebo)" }}>
+                      שאלה {microStep + 1} מתוך 3 · 10 שניות
+                    </p>
+                    <p style={{ fontSize: 17, fontWeight: 800, color: "#1D1D1F", marginBottom: 18, lineHeight: 1.35, fontFamily: "var(--font-heebo)" }}>
+                      {MICRO_Q[microStep].q}
+                    </p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                      {MICRO_Q[microStep].opts.map(opt => (
+                        <motion.button key={opt} whileTap={{ scale: 0.97 }} onClick={() => handleMicroAnswer(opt)}
+                          style={{ background: "#F5F5F7", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "999px", padding: "9px 16px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "var(--font-heebo)" }}
+                          onMouseEnter={e => { e.currentTarget.style.background = "#EBF3FF"; e.currentTarget.style.borderColor = "#0066CC"; e.currentTarget.style.color = "#0066CC"; }}
+                          onMouseLeave={e => { e.currentTarget.style.background = "#F5F5F7"; e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "inherit"; }}>
+                          {opt}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
+                  <div style={{ textAlign: "center", marginBottom: 14 }}>
+                    <div style={{ fontSize: 32, marginBottom: 12 }}>✅</div>
+                    <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 14, letterSpacing: "-0.02em", fontFamily: "var(--font-heebo)" }}>תוצאה מותאמת לארגון שלכם</h3>
+                  </div>
+                  <div style={{ background: "rgba(0,102,204,0.06)", border: "1px solid rgba(0,102,204,0.18)", borderRadius: 14, padding: "18px 20px", marginBottom: 20 }}>
+                    <p style={{ fontSize: 16, fontWeight: 600, color: "#0066CC", lineHeight: 1.55, margin: 0, fontFamily: "var(--font-heebo)" }}>{resultText}</p>
+                  </div>
+                  <div style={{ background: "rgba(0,102,204,0.06)", border: "1px solid rgba(0,102,204,0.18)", borderRadius: 20, padding: "18px 20px", textAlign: "center" }}>
+                    <p style={{ fontSize: 28, fontWeight: 900, color: "#0066CC", marginBottom: 4, fontFamily: "var(--font-heebo)" }}>80%</p>
+                    <p style={{ fontSize: 14, fontWeight: 600, color: "#1D1D1F", marginBottom: 10, lineHeight: 1.45, fontFamily: "var(--font-heebo)" }}>
+                      ככל שיותר עובדים יצטרפו, כך גדל הסיכוי שהארגון יאמץ את הפלטפורמה
+                    </p>
+                    <a href={`https://wa.me/?text=${encodeURIComponent("היי 👋\n\nגם אני הצטרפתי לבקשה להכניס את בום ביי לארגון שלנו.\n\nבום ביי נותנת גישה לחשמל ואלקטרוניקה במחירי יבואן, 8% הנחה קבועה בסופר, וחופשות בארץ ובחו\"ל במחירי סיטונאי.\n\nלוקח 10 שניות:\n" + window.location.origin + "/join/" + normalizeOrgKey(orgName) + (myMemberId ? "?ref=" + myMemberId : ""))}`}
+                      target="_blank" rel="noopener noreferrer"
+                      style={{ display: "block", background: "#25D366", color: "#fff", textDecoration: "none", padding: 14, borderRadius: 14, fontSize: 15, fontWeight: 800, fontFamily: "var(--font-heebo)" }}>
+                      שתפו עמיתים בוואטסאפ ←
+                    </a>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

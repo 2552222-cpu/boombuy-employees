@@ -214,13 +214,13 @@ export default function OrgPage() {
           // Check join status: joined-orgs map OR any token for this org key
           const joinedOrgs = getJoinedOrgs();
           const storedMemberId = localStorage.getItem(`groupmember_${orgSlug}`);
+          const surveyDoneOrgs = getSurveyDoneOrgs();
+
           if (joinedOrgs[orgSlug] || !!storedMemberId) {
             setAlreadyJoined(true);
             if (storedMemberId) setMyMemberId(storedMemberId);
+            if (!surveyDoneOrgs[orgSlug]) setShowMicroSurvey(true);
           }
-
-          // Restore survey-done state
-          const surveyDoneOrgs = getSurveyDoneOrgs();
           if (surveyDoneOrgs[orgSlug]) setSurveyDone(true);
         }
       } catch (err) {
