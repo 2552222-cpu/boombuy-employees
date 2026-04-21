@@ -289,6 +289,7 @@ export default function OrgPage() {
 
   const handleSurveyDone = () => {
     setSurveyDone(true);
+    setShowMicroSurvey(false);
     markSurveyDone(orgSlug);
   };
 
@@ -372,60 +373,45 @@ export default function OrgPage() {
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}
           style={{ background: "#fff", borderRadius: "16px", border: "1px solid rgba(0,0,0,0.07)", padding: "20px 22px" }}>
           <AnimatePresence mode="wait">
-            {alreadyJoined ? (
+            {alreadyJoined && showMicroSurvey ? (
+              <MicroSurvey key="survey" orgKey={orgSlug} orgName={group.orgName} onDone={handleSurveyDone} />
+            ) : alreadyJoined ? (
               <motion.div key="joined" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <div style={{ textAlign: "center", marginBottom: 24 }}>
-                  <div style={{ fontSize: 32, marginBottom: 8 }}>🎉</div>
-                  <p style={{ fontWeight: 800, fontSize: 17, color: "#1D1D1F", marginBottom: 4 }}>הצטרפתם בהצלחה!</p>
-                  <p style={{ fontSize: 13, color: "#86868B" }}>שתפו עוד עמיתים כדי להגדיל את הסיכוי</p>
+                <div style={{ textAlign: "center", marginBottom: 16 }}>
+                  <div style={{ fontSize: 28, marginBottom: 6 }}>🎉</div>
+                  <p style={{ fontWeight: 800, fontSize: 16, color: "#1D1D1F", marginBottom: 3 }}>הצטרפתם!</p>
+                  <p style={{ fontSize: 12, color: "#86868B" }}>שתפו עמיתים כדי להגדיל את הסיכוי</p>
                 </div>
-
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(waMsg(group.orgName, group.currentCount || 1, orgSlug, myMemberId))}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "flex", flexDirection: "column", alignItems: "center",
-                    background: "linear-gradient(145deg, #25D366, #1aad52)",
-                    borderRadius: 20, padding: "24px 20px",
-                    textDecoration: "none",
-                    boxShadow: "0 8px 24px rgba(37,211,102,0.3)",
-                    textAlign: "center",
-                  }}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", flexDirection: "column", alignItems: "center", background: "linear-gradient(145deg,#25D366,#1aad52)", borderRadius: 18, padding: "20px", textDecoration: "none", textAlign: "center", boxShadow: "0 6px 20px rgba(37,211,102,0.3)" }}
                 >
-                  <span style={{ fontSize: 28, marginBottom: 10 }}>💬</span>
-                  <p style={{ fontSize: 16, fontWeight: 800, color: "#fff", marginBottom: 4 }}>שתפו עמיתים בוואטסאפ</p>
-                  <p style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>
-                    ככל שיצטרפו יותר עובדים, כך גדל הסיכוי שהארגון יאמץ את הפלטפורמה
-                  </p>
-                  <p style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginTop: 8 }}>
-                    {count > 1 ? `${count} עובדים כבר הצטרפו` : "היו הראשון לשתף"}
-                  </p>
+                  <span style={{ fontSize: 26, marginBottom: 8 }}>💬</span>
+                  <p style={{ fontSize: 15, fontWeight: 800, color: "#fff", marginBottom: 3 }}>שתפו בוואטסאפ</p>
+                  <p style={{ fontSize: 11, color: "rgba(255,255,255,0.8)" }}>ככל שיצטרפו יותר, כך גדל הסיכוי</p>
                 </a>
               </motion.div>
             ) : !showJoinForm ? (
               <motion.div key="cta" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <p style={{ fontSize: "14px", fontWeight: 700, marginBottom: "12px", textAlign: "center" }}>תודה על המשוב. עכשיו הצטרפו לבקשה</p>
                 <button onClick={() => setShowJoinForm(true)}
                   style={{ width: "100%", background: "#0066CC", color: "#fff", fontWeight: 800, fontSize: "16px", padding: "15px", borderRadius: "13px", border: "none", cursor: "pointer", fontFamily: "var(--font-heebo)", boxShadow: "0 6px 20px rgba(0,102,204,0.25)" }}>
-                  אני מצטרף לבקשה
+                  אני רוצה להצטרף לבקשה
                 </button>
-                <p style={{ fontSize: "12px", color: "#AEAEB2", textAlign: "center", marginTop: "10px" }}>מידע בסיסי בלבד · לא נמכר ולא משותף</p>
+                <p style={{ fontSize: "11px", color: "#AEAEB2", textAlign: "center", marginTop: "8px" }}>שם בלבד. 10 שניות.</p>
               </motion.div>
             ) : (
               <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <p style={{ fontWeight: 700, fontSize: "15px", marginBottom: "14px" }}>מה שמך ומספר הטלפון?</p>
                 <input type="text" value={memberName} onChange={(e) => setMemberName(e.target.value)}
-                  placeholder="שם פרטי ומשפחה"
-                  style={{ width: "100%", padding: "12px 14px", borderRadius: "10px", border: "1px solid rgba(0,0,0,0.12)", background: "#F5F5F7", fontFamily: "var(--font-heebo)", fontSize: "15px", marginBottom: "10px", boxSizing: "border-box", textAlign: "right" }}
-                  autoFocus />
+                  placeholder="שם פרטי ומשפחה" autoFocus
+                  style={{ width: "100%", padding: "12px 14px", borderRadius: "10px", border: "1px solid rgba(0,0,0,0.12)", background: "#F5F5F7", fontFamily: "var(--font-heebo)", fontSize: "15px", marginBottom: "10px", boxSizing: "border-box", textAlign: "right" }} />
                 <input type="tel" value={memberPhone} onChange={(e) => setMemberPhone(e.target.value)}
-                  placeholder="מספר טלפון נייד"
+                  placeholder="טלפון (אופציונלי)"
                   style={{ width: "100%", padding: "12px 14px", borderRadius: "10px", border: "1px solid rgba(0,0,0,0.12)", background: "#F5F5F7", fontFamily: "var(--font-heebo)", fontSize: "15px", marginBottom: "12px", boxSizing: "border-box", textAlign: "right" }} />
                 <div style={{ display: "flex", gap: "10px" }}>
                   <button onClick={handleJoin} disabled={!memberName.trim() || joining}
-                    style={{ flex: 1, background: memberName.trim() ? "#0066CC" : "#C7C7CC", color: "#fff", fontWeight: 700, fontSize: "14px", padding: "13px", borderRadius: "10px", border: "none", cursor: memberName.trim() ? "pointer" : "default", fontFamily: "var(--font-heebo)" }}>
-                    {joining ? "שומר..." : "אני מצטרף לבקשה"}
+                    style={{ flex: 1, background: memberName.trim() ? "#0066CC" : "#C7C7CC", color: "#fff", fontWeight: 700, fontSize: "15px", padding: "14px", borderRadius: "10px", border: "none", cursor: memberName.trim() ? "pointer" : "default", fontFamily: "var(--font-heebo)" }}>
+                    {joining ? "שומר..." : "אני מצטרף"}
                   </button>
                   <button onClick={() => setShowJoinForm(false)}
                     style={{ background: "transparent", color: "#86868B", fontSize: "13px", padding: "13px 16px", borderRadius: "10px", border: "1px solid rgba(0,0,0,0.1)", cursor: "pointer", fontFamily: "var(--font-heebo)" }}>
