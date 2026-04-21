@@ -17,7 +17,7 @@ export default function GlobalHeader() {
           <img
             src="https://media.base44.com/images/public/69bc4105141d932b80ba9f27/aceff4e0c_500400.png"
             alt="BoomBuy"
-            className="h-12 md:h-16 w-auto object-contain"
+            className="h-14 md:h-16 w-auto object-contain"
           />
         </div>
 
