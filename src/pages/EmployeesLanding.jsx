@@ -99,7 +99,7 @@ export default function EmployeesLanding() {
                 כבר פתחתם בקשה עבור {lastOrgName}
               </h2>
               <p style={{ fontSize: 14, color: "#86868B", marginBottom: 24, lineHeight: 1.6 }}>
-                הבקשה שלכם פעילה. כדי להגדיל את הסיכוי — שתפו עוד עמיתים
+                הבקשה שלכם פעילה. שתפו עוד עמיתים כדי להגדיל את הסיכוי.
               </p>
               <a
                 href={`/join/${lastOrgKey}`}

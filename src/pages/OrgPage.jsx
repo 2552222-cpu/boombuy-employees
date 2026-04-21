@@ -73,7 +73,7 @@ function OrgLanding({ orgName, count, currentTarget }) {
           <span style={{ color: "#0066CC" }}>דרך מקום העבודה</span>
         </h1>
         <p style={{ fontSize: 14, color: "#6E6E73", lineHeight: 1.6, marginBottom: 18 }}>
-          בום ביי נותנת לעובדים הנחות על סופר, חשמל, חופשות ועוד — בלי שהארגון משלם שקל נוסף
+          חשמל ואלקטרוניקה במחירי יבואן. 8% הנחה קבועה בסופר. חופשות והופעות במחירי סיטונאי.
         </p>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(52,199,89,0.08)", border: "1px solid rgba(52,199,89,0.2)", borderRadius: 12, padding: "10px 18px" }}>
           <span style={{ fontSize: 20, fontWeight: 900, color: "#1A7A43" }}>{count}</span>
@@ -115,16 +115,21 @@ function OrgLanding({ orgName, count, currentTarget }) {
 // ─── Micro Survey ─────────────────────────────────────────────────────────────
 const MICRO_QUESTIONS = [
   {
-    q: "עד כמה מה שראית כאן רלוונטי לך אישית?",
-    opts: ["מאוד", "די", "קצת", "לא ממש"]
+    q: "אם הארגון שלך יצטרף, באיזה תחום תרגיש את זה הכי חזק?",
+    opts: ["סופר ויוקר המחיה", "חשמל ואלקטרוניקה", "חופשות ובילויים", "הטבות יומיות"]
   },
   {
-    q: "מה הכי מדבר אליך מתוך מה שראית?",
-    opts: ["סופר ויוקר המחיה", "חופשות והופעות", "חשמל ואלקטרוניקה", "הטבות יומיות לאורך השנה"]
+    q: "איזה משפט הכי מדויק מבחינתך?",
+    opts: [
+      "זה יעזור לי מאוד לעבור את החודש",
+      "זה בדיוק מה שהארגון שלי צריך",
+      "זה יתן לי ערך אמיתי לאורך השנה",
+      "מעניין, אבל עוד לא בטוח"
+    ]
   },
   {
-    q: "איזה משפט הכי נכון מבחינתך?",
-    opts: ["זה יכול לעזור לי מאוד לעבור את החודש", "זה יכול לתת לי ערך אמיתי לאורך השנה", "הארגון שלנו חייב פתרון כזה", "מעניין, אבל פחות רלוונטי לי כרגע"]
+    q: "האם הייתה ממליץ לעמית עבודה להצטרף?",
+    opts: ["בהחלט כן", "כנראה שכן", "לא בטוח"]
   },
 ];
 
@@ -375,55 +380,28 @@ export default function OrgPage() {
                   <p style={{ fontSize: 13, color: "#86868B" }}>שתפו עוד עמיתים כדי להגדיל את הסיכוי</p>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                  <a
-                    href={`https://wa.me/?text=${encodeURIComponent(waMsg(group.orgName, group.currentCount || 1, orgSlug, myMemberId))}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                      background: "linear-gradient(145deg, #25D366, #1aad52)",
-                      borderRadius: 20, padding: "24px 16px",
-                      textDecoration: "none", cursor: "pointer",
-                      boxShadow: "0 8px 24px rgba(37,211,102,0.3)",
-                      transition: "transform 0.2s",
-                      minHeight: 130,
-                      textAlign: "center",
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
-                    onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
-                  >
-                    <span style={{ fontSize: 28, marginBottom: 10 }}>💬</span>
-                    <p style={{ fontSize: 14, fontWeight: 800, color: "#fff", marginBottom: 4, lineHeight: 1.2 }}>שתפו בוואטסאפ</p>
-                    <p style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", lineHeight: 1.4 }}>מומלץ — מגדיל ב-80% את הסיכוי</p>
-                    <p style={{ fontSize: 11, color: "rgba(255,255,255,0.75)", textAlign: "center", marginTop: 6 }}>
-                      {count > 1 ? `${count} עובדים כבר שיתפו` : "היו הראשון לשתף"}
-                    </p>
-                  </a>
-
-                  <button
-                    onClick={handleLetterCopy}
-                    style={{
-                      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                      background: "linear-gradient(145deg, #0066CC, #004fa3)",
-                      borderRadius: 20, padding: "24px 16px",
-                      border: "none", cursor: "pointer",
-                      boxShadow: "0 8px 24px rgba(0,102,204,0.28)",
-                      transition: "transform 0.2s",
-                      minHeight: 130,
-                      textAlign: "center",
-                      fontFamily: "var(--font-heebo)",
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
-                    onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
-                  >
-                    <span style={{ fontSize: 28, marginBottom: 10 }}>📋</span>
-                    <p style={{ fontSize: 14, fontWeight: 800, color: "#fff", marginBottom: 4, lineHeight: 1.2 }}>
-                      {letterCopied ? "✓ הועתק!" : "מכתב ל-HR / ועד"}
-                    </p>
-                    <p style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", lineHeight: 1.4 }}>העתק ושלח להנהלה</p>
-                  </button>
-                </div>
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(waMsg(group.orgName, group.currentCount || 1, orgSlug, myMemberId))}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex", flexDirection: "column", alignItems: "center",
+                    background: "linear-gradient(145deg, #25D366, #1aad52)",
+                    borderRadius: 20, padding: "24px 20px",
+                    textDecoration: "none",
+                    boxShadow: "0 8px 24px rgba(37,211,102,0.3)",
+                    textAlign: "center",
+                  }}
+                >
+                  <span style={{ fontSize: 28, marginBottom: 10 }}>💬</span>
+                  <p style={{ fontSize: 16, fontWeight: 800, color: "#fff", marginBottom: 4 }}>שתפו עמיתים בוואטסאפ</p>
+                  <p style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>
+                    ככל שיצטרפו יותר עובדים, כך גדל הסיכוי שהארגון יאמץ את הפלטפורמה
+                  </p>
+                  <p style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginTop: 8 }}>
+                    {count > 1 ? `${count} עובדים כבר הצטרפו` : "היו הראשון לשתף"}
+                  </p>
+                </a>
               </motion.div>
             ) : !showJoinForm ? (
               <motion.div key="cta" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

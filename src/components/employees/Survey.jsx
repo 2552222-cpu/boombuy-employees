@@ -316,10 +316,7 @@ export default function Survey() {
                   שתפו עמיתים בוואטסאפ ← (מומלץ)
                 </a>
 
-                <button onClick={() => { window.location.href = "/join/" + normalizeOrgKey(orgName); }}
-                  style={{ width: "100%", background: "#0066CC", color: "#fff", fontWeight: 700, fontSize: 14, padding: "13px", borderRadius: 13, border: "none", cursor: "pointer", fontFamily: "var(--font-heebo)" }}>
-                  עבור לעמוד הבקשה שלכם
-                </button>
+
               </div>
             </motion.div>
           )}

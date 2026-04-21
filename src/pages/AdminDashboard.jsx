@@ -3,6 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Users, TrendingUp } from "lucide-react";
+import { buildLetterMessage } from "@/utils/messages";
 
 // ── Lead Score ──────────────────────────────────────────────────────────────
 function calcLeadScore(req) {
@@ -430,6 +431,21 @@ export default function AdminDashboard() {
                           <button onClick={() => setDemoReq(req)}
                             style={{ background: "#0066CC", color: "#fff", fontSize: "11px", fontWeight: 700, padding: "5px 9px", borderRadius: "7px", border: "none", cursor: "pointer", whiteSpace: "nowrap", fontFamily: "var(--font-heebo)" }}>
                             דמו מותאם
+                          </button>
+                          <button
+                            onClick={() => {
+                              const insights = { painPoint: req.painPoint };
+                              const letter = buildLetterMessage(req.orgName, req.orgKey, req.currentCount || 1, insights);
+                              navigator.clipboard.writeText(letter);
+                              alert("המכתב הועתק ללוח!");
+                            }}
+                            style={{
+                              background: "#F0F4FF", color: "#0055CC", border: "1px solid rgba(0,85,204,0.2)",
+                              borderRadius: 8, padding: "6px 12px", fontSize: 12, fontWeight: 700,
+                              cursor: "pointer", fontFamily: "var(--font-heebo)"
+                            }}
+                          >
+                            📋 מכתב
                           </button>
                         </div>
                       </td>
