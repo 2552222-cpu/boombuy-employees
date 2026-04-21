@@ -103,7 +103,7 @@ export default function ResultsPage() {
             {/* Title */}
             <div className="text-center">
               <h1 className="text-3xl md:text-4xl font-black mb-2 text-foreground">
-                {orgName ? `${orgName} — מה העובדים שלך אומרים` : "מה העובדים שלנו אומרים"}
+                {orgName ? `${orgName}. מה העובדים שלך אומרים` : "מה העובדים שלנו אומרים"}
               </h1>
               <p className="text-muted-foreground text-base md:text-lg">
                 {responses.length} עובדים כבר ענו
@@ -178,7 +178,7 @@ export default function ResultsPage() {
                   rel="noopener noreferrer"
                   className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 rounded-lg transition-all text-center"
                 >
-                  קבע דמו — 15 דקות
+                  קבע שיחת היכרות
                 </a>
                 <a
                   href="https://wa.me/972542552222"

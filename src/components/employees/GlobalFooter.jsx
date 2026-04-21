@@ -9,7 +9,7 @@ export default function GlobalFooter() {
           {/* Left: Copyright & Site */}
           <div className="text-center md:text-right space-y-2">
             <p className="text-xs md:text-sm font-medium text-foreground">
-              BoomBuy © 2025
+              בום ביי © 2026
             </p>
             <p className="text-xs md:text-sm text-muted-foreground">
               לארגונים:{" "}
