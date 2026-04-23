@@ -10,8 +10,8 @@ const MICRO_Q = [
 
 const ORG_SIZE_OPTIONS = [
   { label: "עד 50 עובדים" },
-  { label: "50-250 עובדים" },
-  { label: "250-1000 עובדים" },
+  { label: "50 | 250 עובדים" },
+  { label: "250 | 1000 עובדים" },
   { label: "1000+ עובדים" },
 ];
 

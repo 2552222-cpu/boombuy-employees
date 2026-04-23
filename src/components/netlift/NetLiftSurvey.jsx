@@ -8,9 +8,9 @@ const QUESTIONS = [
     title: "כמה אתה מוציא על סופר בחודש?",
     sub: null,
     options: [
-      { label: "2,000–3,000 ₪", value: 2500 },
-      { label: "3,000–5,000 ₪", value: 4000 },
-      { label: "5,000–8,000 ₪", value: 6500 },
+      { label: "2,000 | 3,000 ₪", value: 2500 },
+      { label: "3,000 | 5,000 ₪", value: 4000 },
+      { label: "5,000 | 8,000 ₪", value: 6500 },
       { label: "8,000+ ₪", value: 9000 },
     ],
   },
@@ -32,7 +32,7 @@ const QUESTIONS = [
     options: [
       { label: "0", value: 0 },
       { label: "1", value: 1 },
-      { label: "2–3", value: 2.5 },
+      { label: "2 | 3", value: 2.5 },
       { label: "4+", value: 4 },
     ],
   },
@@ -42,7 +42,7 @@ const QUESTIONS = [
     sub: null,
     options: [
       { label: "כל שבוע", value: 1.0 },
-      { label: "2–3 פעמים בחודש", value: 0.65 },
+      { label: "2 | 3 פעמים בחודש", value: 0.65 },
       { label: "פעם בחודש", value: 0.3 },
       { label: "כמעט לא", value: 0.05 },
     ],
