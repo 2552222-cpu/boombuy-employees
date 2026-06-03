@@ -79,9 +79,29 @@ function OrgLanding({ orgName, count, currentTarget, onJoinRequest }) {
           <span style={{ fontSize: 20, fontWeight: 900, color: "#1A7A43" }}>{count}</span>
           <span style={{ fontSize: 13, fontWeight: 600, color: "#1A7A43" }}>עובדים מ{orgName} כבר הצטרפו</span>
         </div>
-        <p style={{fontSize:12, color:"#86868B", marginTop:8, textAlign:"center", fontFamily:"var(--font-heebo)"}}>
+        <p style={{fontSize:12, color:"#86868B", marginTop:8, marginBottom: 20, textAlign:"center", fontFamily:"var(--font-heebo)"}}>
           מצטרף לאלפי עובדים שכבר נהנים מבום ביי
         </p>
+        <button
+          onClick={onJoinRequest}
+          style={{
+            width: "100%",
+            background: "linear-gradient(135deg, #0066CC, #004fa3)",
+            color: "#fff",
+            fontWeight: 900,
+            fontSize: 18,
+            padding: "18px",
+            borderRadius: 16,
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "var(--font-heebo)",
+            boxShadow: "0 8px 28px rgba(0,102,204,0.4)",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          צרפו אותי לבקשה ←
+        </button>
+        <p style={{ fontSize: 11, color: "#AEAEB2", textAlign: "center", marginTop: 8 }}>שם בלבד · 10 שניות · תקבלו לינק אישי לשיתוף</p>
       </motion.div>
 
       {/* OFFERS SLIDER */}
