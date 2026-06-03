@@ -378,11 +378,10 @@ export default function OrgPage() {
         {/* Step: Survey → Join → Share */}
         <motion.div id="join-section" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}
           style={{ background: "#fff", borderRadius: "16px", border: "1px solid rgba(0,0,0,0.07)", padding: "20px 22px" }}>
-          <AnimatePresence mode="wait">
             {alreadyJoined && showMicroSurvey ? (
-              <MicroSurvey key="survey" orgKey={orgSlug} orgName={group.orgName} onDone={handleSurveyDone} />
+              <MicroSurvey orgKey={orgSlug} orgName={group.orgName} onDone={handleSurveyDone} />
             ) : alreadyJoined ? (
-              <motion.div key="joined" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <div>
                 <div style={{ textAlign: "center", marginBottom: 16 }}>
                   <div style={{ fontSize: 28, marginBottom: 6 }}>🎉</div>
                   <p style={{ fontWeight: 800, fontSize: 16, color: "#1D1D1F", marginBottom: 3 }}>הצטרפתם!</p>
@@ -397,17 +396,17 @@ export default function OrgPage() {
                   <p style={{ fontSize: 15, fontWeight: 800, color: "#fff", marginBottom: 3 }}>שתפו בוואטסאפ</p>
                   <p style={{ fontSize: 11, color: "rgba(255,255,255,0.8)" }}>ככל שיצטרפו יותר, כך גדל הסיכוי</p>
                 </a>
-              </motion.div>
+              </div>
             ) : !showJoinForm ? (
-              <motion.div key="cta" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <div>
                 <button onClick={() => setShowJoinForm(true)}
                   style={{ width: "100%", background: "#0066CC", color: "#fff", fontWeight: 800, fontSize: "16px", padding: "15px", borderRadius: "13px", border: "none", cursor: "pointer", fontFamily: "var(--font-heebo)", boxShadow: "0 6px 20px rgba(0,102,204,0.25)" }}>
                   אני רוצה להצטרף לבקשה
                 </button>
                 <p style={{ fontSize: "11px", color: "#AEAEB2", textAlign: "center", marginTop: "8px" }}>שם בלבד. 10 שניות.</p>
-              </motion.div>
+              </div>
             ) : (
-              <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <div>
                 <input type="text" value={memberName} onChange={(e) => setMemberName(e.target.value)}
                   placeholder="שם פרטי ומשפחה" autoFocus
                   style={{ width: "100%", padding: "12px 14px", borderRadius: "10px", border: "1px solid rgba(0,0,0,0.12)", background: "#F5F5F7", fontFamily: "var(--font-heebo)", fontSize: "15px", marginBottom: "10px", boxSizing: "border-box", textAlign: "right" }} />
@@ -424,9 +423,8 @@ export default function OrgPage() {
                     ביטול
                   </button>
                 </div>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </motion.div>
 
       </div>
