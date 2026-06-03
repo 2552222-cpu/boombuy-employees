@@ -51,7 +51,13 @@ export default function EmployeesLanding() {
         {showNetLift ? (
           <section id="value-calculator">
             <React.Suspense fallback={<div style={{ height: 400 }} />}>
-              <NetLiftCalculator />
+              <NetLiftCalculator onJoin={() => {
+                if (lastOrgKey) {
+                  window.location.href = `/join/${lastOrgKey}`;
+                } else {
+                  document.getElementById("survey-section")?.scrollIntoView({ behavior: "smooth" });
+                }
+              }} />
             </React.Suspense>
           </section>
         ) : (
