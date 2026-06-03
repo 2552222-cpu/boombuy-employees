@@ -83,7 +83,7 @@ function SparkleEffect() {
   );
 }
 
-export default function NetLiftResult({ result, answers, onRestart }) {
+export default function NetLiftResult({ result, answers, onRestart, onJoin }) {
   const [showSparkle, setShowSparkle] = useState(true);
 
   useEffect(() => {
@@ -275,7 +275,11 @@ export default function NetLiftResult({ result, answers, onRestart }) {
           </p>
           <button
             onClick={() => {
-              document.getElementById("survey-section")?.scrollIntoView({ behavior: "smooth" });
+              if (onJoin) {
+                onJoin();
+              } else {
+                document.getElementById("survey-section")?.scrollIntoView({ behavior: "smooth" });
+              }
             }}
             style={{
               background: "#fff", color: "#0055CC",

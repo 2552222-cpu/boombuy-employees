@@ -54,7 +54,7 @@ function letterMsg(orgName, count, orgKey, group) {
 }
 
 // ─── Org Landing ──────────────────────────────────────────────────────────────
-function OrgLanding({ orgName, count, currentTarget }) {
+function OrgLanding({ orgName, count, currentTarget, onJoinRequest }) {
   const [showNetLift, setShowNetLift] = useState(false);
 
   return (
@@ -89,7 +89,10 @@ function OrgLanding({ orgName, count, currentTarget }) {
 
       {/* NETLIFT */}
       {showNetLift ? (
-        <NetLiftCalculator />
+        <NetLiftCalculator onJoin={() => {
+          setShowNetLift(false);
+          if (onJoinRequest) onJoinRequest();
+        }} />
       ) : (
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -343,7 +346,10 @@ export default function OrgPage() {
       <div style={{ maxWidth: 520, margin: "0 auto", padding: "32px 16px", display: "flex", flexDirection: "column", gap: "16px" }}>
 
         {/* Org Landing */}
-        <OrgLanding orgName={group.orgName} count={count} currentTarget={currentTarget} />
+        <OrgLanding orgName={group.orgName} count={count} currentTarget={currentTarget} onJoinRequest={() => {
+          setShowJoinForm(true);
+          setTimeout(() => document.getElementById("join-section")?.scrollIntoView({ behavior: "smooth" }), 100);
+        }} />
 
         {/* Progress */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
@@ -370,7 +376,7 @@ export default function OrgPage() {
         </motion.div>
 
         {/* Step: Survey → Join → Share */}
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}
+        <motion.div id="join-section" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}
           style={{ background: "#fff", borderRadius: "16px", border: "1px solid rgba(0,0,0,0.07)", padding: "20px 22px" }}>
           <AnimatePresence mode="wait">
             {alreadyJoined && showMicroSurvey ? (

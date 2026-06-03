@@ -3,7 +3,7 @@ import NetLiftSurvey from "../netlift/NetLiftSurvey";
 import NetLiftResult from "../netlift/NetLiftResult";
 
 // Flow: survey → result (direct, no extra intro screen)
-export default function NetLiftCalculator() {
+export default function NetLiftCalculator({ onJoin }) {
   const [step, setStep] = useState("survey");
   const [result, setResult] = useState(null);
   const [answers, setAnswers] = useState(null);
@@ -15,6 +15,6 @@ export default function NetLiftCalculator() {
   };
 
   if (step === "survey") return <NetLiftSurvey onFinish={handleComplete} />;
-  if (step === "result") return <NetLiftResult result={result} answers={answers} onRestart={() => setStep("survey")} />;
+  if (step === "result") return <NetLiftResult result={result} answers={answers} onRestart={() => setStep("survey")} onJoin={onJoin} />;
   return null;
 }
